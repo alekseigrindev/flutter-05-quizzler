@@ -26,9 +26,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
 
-  List<Widget> scoreKeeper = [
-
-  ];
+  List<Widget> scoreKeeper = [];
 
   @override
   Widget build(BuildContext context) {
