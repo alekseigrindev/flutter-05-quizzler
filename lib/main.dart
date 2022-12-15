@@ -35,28 +35,25 @@ class _QuizPageState extends State<QuizPage> {
 
   void result(bool answer) {
     setState(() {
-      if(quizBrain.questionList[_currentPosition].getAnswer == answer && _currentPosition < quizBrain.questionList.length) {
+      if(quizBrain.getQuestionAnswer() == answer) {
       scoreKeeper.add(
         Icon(
           Icons.check,
           color: Colors.green,
         ),
       );
-      } else {
+      quizBrain.nextQuestion();
+      } else if (quizBrain.getQuestionAnswer() != answer) {
         scoreKeeper.add(
             Icon(
               Icons.close,
               color: Colors.red,
             ),
         );
-      }
-      if(_currentPosition < quizBrain.questionList.length - 1) {
-        _currentPosition++;
+        quizBrain.nextQuestion();
       }
     });
   }
-
-  static var _currentPosition = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +67,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionList[_currentPosition].getQuestion,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
