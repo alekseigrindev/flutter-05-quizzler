@@ -46,4 +46,8 @@ class QuizBrain {
     return _questionList[_questionNumber].getAnswer;
   }
 
+  int getListLength() {
+    return _questionList.length;
+  }
+
 }
